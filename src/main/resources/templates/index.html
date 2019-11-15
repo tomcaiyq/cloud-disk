@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>role数据</title>
+</head>
+<body>
+<ul>
+    <li th:each="role: ${roles}">
+        <span th:text="${role.name}"></span>
+    </li>
+</ul>
+</body>
+</html>

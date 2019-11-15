@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomcai.redis.dao.RoleDao">
+    <select id="list" resultType="role">
+        select id,name,role_type,create_date,update_date
+        from sys_role order by create_date desc limit 10
+    </select>
+
+    <select id="page" resultType="role">
+        select id,name,role_type,create_date,update_date
+        from sys_role order by create_date desc limit #{begin},#{offset}
+    </select>
+
+</mapper>

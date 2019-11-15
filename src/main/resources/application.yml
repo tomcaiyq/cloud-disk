@@ -1,0 +1,26 @@
+# port
+server:
+  port: 8888
+
+spring:
+  # mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 111111
+  # redis
+  redis:
+    host: 192.168.1.120
+    port: 6379
+    password: 123456
+
+# mybatis
+mybatis:
+  # mapper文件路径
+  mapper-locations: classpath:mapper/*.xml
+  # 别名
+  type-aliases-package: com.tomcai.redis.pojo
+  configuration:
+    # 驼峰命名
+    map-underscore-to-camel-case: true
