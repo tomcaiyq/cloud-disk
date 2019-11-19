@@ -45,11 +45,11 @@ public class RoleServiceImpl implements RoleService {
             return list;
         } else {
             long t1 = System.currentTimeMillis();
-            List<Object> list = roleDao.list();
+            List<Object> list = roleDao.page(offset, pageSize);
             long t2 = System.currentTimeMillis();
             redisService.lpush(sb.toString(), list);
             log.info("从mysql取得数据,耗时:" + (t2 - t1) + "ms");
-            return roleDao.page(offset, pageSize);
+            return list;
         }
     }
 }
