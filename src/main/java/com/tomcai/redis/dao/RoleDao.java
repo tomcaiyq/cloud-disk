@@ -8,5 +8,5 @@ import java.util.List;
 public interface RoleDao {
     List<Object> list();
 
-    List<Object> page(Integer begin, Integer offset);
+    List<Object> page(Integer offset, Integer pageSize);
 }

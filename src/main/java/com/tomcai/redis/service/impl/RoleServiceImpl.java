@@ -3,12 +3,14 @@ package com.tomcai.redis.service.impl;
 import com.tomcai.redis.dao.RoleDao;
 import com.tomcai.redis.service.RedisService;
 import com.tomcai.redis.service.RoleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Slf4j
 public class RoleServiceImpl implements RoleService {
 
     @Resource
@@ -32,19 +34,22 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Object> list(Integer pageNum, Integer pageSize) {
-        Integer begin = (pageNum - 1) * pageSize;
-        Integer offset = pageSize * pageNum;
+        Integer offset = (pageNum - 1) * pageSize;
         StringBuilder sb = new StringBuilder("page:");
         sb.append(pageNum);
         if (redisService.hasKey(sb.toString())) {
-            System.out.println("redis取得数据");
-            return redisService.list(sb.toString());
+            long t1 = System.currentTimeMillis();
+            List<Object> list = redisService.list(sb.toString());
+            long t2 = System.currentTimeMillis();
+            log.info("从redis取得数据,耗时:" + (t2 - t1) + "ms");
+            return list;
         } else {
-            System.out.println("mysql取得数据");
+            long t1 = System.currentTimeMillis();
             List<Object> list = roleDao.list();
+            long t2 = System.currentTimeMillis();
             redisService.lpush(sb.toString(), list);
-            return roleDao.page(begin, offset);
+            log.info("从mysql取得数据,耗时:" + (t2 - t1) + "ms");
+            return roleDao.page(offset, pageSize);
         }
-
     }
 }

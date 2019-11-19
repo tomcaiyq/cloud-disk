@@ -9,7 +9,7 @@
 
     <select id="page" resultType="role">
         select id,name,role_type,create_date,update_date
-        from sys_role order by create_date desc limit #{begin},#{offset}
+        from sys_role order by create_date desc limit #{offset},#{pageSize}
     </select>
 
 </mapper>
