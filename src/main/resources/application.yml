@@ -6,14 +6,15 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.13.41.208:3306/test?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8
+    # jdbc:mysql://106.13.41.208:3306/test?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8
+    url: ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
     username: root
-    password: Cai@1995
+    password: ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
   # redis
   redis:
-    host: 121.36.32.117
+    host: ENC(okxOoOtJksvAvsggGgCx+fFpsCGqdGbT) # 121.36.32.117
     port: 6379
-    password: 123456
+    password: ENC(hljY8XsGfD5fhZP4AUHU/A==)
 
 # mybatis
 mybatis:
@@ -24,3 +25,8 @@ mybatis:
   configuration:
     # 驼峰命名
     map-underscore-to-camel-case: true
+
+#加密工具盐值
+jasypt:
+  encryptor:
+    password: /1uqR0vXxA2tSM9HCtSW4A== # ENC(tomcai)
