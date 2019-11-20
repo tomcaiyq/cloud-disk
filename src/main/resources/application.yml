@@ -6,22 +6,27 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    # jdbc:mysql://106.13.41.208:3306/test?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8
-    url: ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
+    url: jdbc:mysql://106.13.41.208:3306/test?serverTimezone=UTC&useSSL=false&characterEncoding=utf-8
+    # ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
     username: root
-    password: ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
+    password: Cai@1995 # ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
   # redis
   redis:
-    host: ENC(okxOoOtJksvAvsggGgCx+fFpsCGqdGbT) # 121.36.32.117
+    host: 121.36.32.117 #ENC(okxOoOtJksvAvsggGgCx+fFpsCGqdGbT)
     port: 6379
-    password: ENC(hljY8XsGfD5fhZP4AUHU/A==)
+    password: 123456 # ENC(hljY8XsGfD5fhZP4AUHU/A==)
+    # 上传文件的配置
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
 
 # mybatis
 mybatis:
   # mapper文件路径
   mapper-locations: classpath:mapper/*.xml
   # 别名
-  type-aliases-package: com.tomcai.redis.pojo
+  type-aliases-package: com.tomcai.cloud.pojo
   configuration:
     # 驼峰命名
     map-underscore-to-camel-case: true
@@ -30,3 +35,8 @@ mybatis:
 jasypt:
   encryptor:
     password: /1uqR0vXxA2tSM9HCtSW4A== # ENC(tomcai)
+
+##自定义参数
+# 自定义文件上传路径
+upload:
+  dir: e:/upload

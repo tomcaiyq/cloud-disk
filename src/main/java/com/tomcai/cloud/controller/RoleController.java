@@ -17,18 +17,10 @@ public class RoleController {
     @Resource
     private RoleService roleService;
 
-    @GetMapping("list")
-    @ResponseBody
-    public List<Object> list() {
-        return roleService.getList("role:list");
-    }
-
     @GetMapping("page/{page}")
     @ResponseBody
     public List<Object> page(@PathVariable("page") Integer page) {
         Integer pageSize = 100;
         return roleService.list(page, pageSize);
     }
-
-
 }

@@ -2,8 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomcai.cloud.dao.FileDao">
+    <sql id="fileInfoColumns">
+        a.id, a.file_name, a.url, a.size, b.name as type, a.type_id,
+        a.uploader_id, a.suffix, a.upload_date as uploadDate, a.update_date
+    </sql>
+
     <insert id="insert" parameterType="fileInfo">
-        insert into file_info(file_name,url,size,type_id,suffix,uploader_id)
-        values (#{fileName},#{url},#{size},#{typeId},#{suffix},#{uploaderId})
+        insert into file_info(id,file_name,url,size,type_id,suffix,uploader_id)
+        values (#{id},#{fileName},#{url},#{size},#{typeId},#{suffix},#{uploaderId})
     </insert>
+
+    <select id="getById" resultType="fileInfo">
+        select
+        <include refid="fileInfoColumns"/>
+        from file_info a left join file_type b
+        on a.type_id=b.id
+        where a.del='0' and a.id=#{id}
+        order by a.upload_date desc
+    </select>
+
+    <select id="list" resultType="fileInfo">
+        select
+        <include refid="fileInfoColumns"/>
+        from file_info a left join file_type b
+        on a.type_id=b.id
+        where a.del='0'
+        order by a.upload_date desc
+    </select>
 </mapper>

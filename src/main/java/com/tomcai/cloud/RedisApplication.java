@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.tomcai.redis.dao")
+@MapperScan(basePackages = "com.tomcai.cloud.dao")
 public class RedisApplication {
 
     public static void main(String[] args) {

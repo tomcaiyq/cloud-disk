@@ -20,19 +20,6 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
-    public List<Object> getList(String key) {
-        if (redisService.hasKey(key)) {
-            System.out.println("redis取得数据");
-            return redisService.list(key);
-        } else {
-            System.out.println("mysql取得数据");
-            List<Object> list = roleDao.list();
-            redisService.lpush(key, list);
-            return list;
-        }
-    }
-
-    @Override
     public List<Object> list(Integer pageNum, Integer pageSize) {
         Integer offset = (pageNum - 1) * pageSize;
         StringBuilder sb = new StringBuilder("page:");

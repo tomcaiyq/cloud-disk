@@ -1,32 +1,54 @@
 package com.tomcai.cloud.enums;
 
 public enum FileTypeEnum {
-    IMAGE("图片", "image", "1"),
-    VIDEO("视频", "video", "2"),
-    DOCUMENT("文档", "document", "3"),
-    AUDIO("音频", "audio", "4"),
-    TORRENT("种子", "torrent", "5"),
-    OTHER("其它", "other", "6");
+    IMAGE("图片", "image", "1", ""),
+    VIDEO("视频", "video", "2", ""),
+    DOCUMENT("文档", "document", "3", ""),
+    AUDIO("音频", "audio", "4", ""),
+    TORRENT("种子", "torrent", "5", ""),
+    OTHER("其它", "other", "6", "");
 
     private String name;
     private String nameEn;
     private String id;
+    private String suffix;
 
-    FileTypeEnum(String name, String nameEn, String id) {
+    FileTypeEnum(String name, String nameEn, String id, String suffix) {
         this.name = name;
         this.nameEn = nameEn;
         this.id = id;
+        this.suffix = suffix;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getNameEn() {
         return nameEn;
     }
 
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 }
