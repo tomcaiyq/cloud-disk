@@ -1,4 +1,4 @@
-package com.tomcai.redis;
+package com.tomcai.cloud;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

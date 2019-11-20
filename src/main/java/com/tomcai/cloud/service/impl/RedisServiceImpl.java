@@ -1,6 +1,6 @@
-package com.tomcai.redis.service.impl;
+package com.tomcai.cloud.service.impl;
 
-import com.tomcai.redis.service.RedisService;
+import com.tomcai.cloud.service.RedisService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 

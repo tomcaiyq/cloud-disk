@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,10 +7,9 @@
     <title>role数据</title>
 </head>
 <body>
-<ul>
-    <li th:each="role: ${roles}">
-        <span th:text="${role.name}"></span>
-    </li>
-</ul>
+<form action="" method="post">
+    <input type="file" value="请选择上传文件" name="file">
+    <input type="submit" value="上传">
+</form>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.tomcai.redis;
+package com.tomcai.cloud;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

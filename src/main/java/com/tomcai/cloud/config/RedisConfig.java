@@ -1,4 +1,4 @@
-package com.tomcai.redis.config;
+package com.tomcai.cloud.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

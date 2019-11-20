@@ -1,8 +1,8 @@
-package com.tomcai.redis.service.impl;
+package com.tomcai.cloud.service.impl;
 
-import com.tomcai.redis.dao.RoleDao;
-import com.tomcai.redis.service.RedisService;
-import com.tomcai.redis.service.RoleService;
+import com.tomcai.cloud.dao.RoleDao;
+import com.tomcai.cloud.service.RedisService;
+import com.tomcai.cloud.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

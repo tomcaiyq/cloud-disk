@@ -1,4 +1,4 @@
-package com.tomcai.redis.dao;
+package com.tomcai.cloud.dao;
 
 import org.springframework.stereotype.Repository;
 

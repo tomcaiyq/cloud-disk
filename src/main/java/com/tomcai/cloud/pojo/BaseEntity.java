@@ -1,4 +1,4 @@
-package com.tomcai.redis.pojo;
+package com.tomcai.cloud.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -7,12 +7,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Role implements Serializable {
-    private String id;
-    private String name;
-    private String roleType;
+public class BaseEntity implements Serializable {
+    protected String id;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private Date createDate;
+    protected Date createDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private Date updateDate;
+    protected Date updateDate;
+    protected boolean del;
 }
