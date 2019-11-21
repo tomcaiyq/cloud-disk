@@ -25,12 +25,12 @@ public class FileServiceImpl implements FileService {
     @Resource
     private FileDao fileDao;
 
-    @Value("${upload.dir}")
+    @Value("${file.upload.dir}")
     private String path;
 
     @Override
     @Transactional
-    public String upload(MultipartHttpServletRequest request) {
+    public boolean upload(MultipartHttpServletRequest request) {
         try {
             Iterator<String> fileNames = request.getFileNames();
             while (fileNames.hasNext()) {
@@ -61,20 +61,22 @@ public class FileServiceImpl implements FileService {
                     });
                 }
             }
-            return "上传成功";
+            return true;
         } catch (Exception e) {
-            return e.getMessage();
+            return false;
         }
     }
 
     @Override
     public FileInfo getById(String id) {
-        return fileDao.getById(id);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setId(id);
+        return fileDao.find(fileInfo);
     }
 
     @Override
     public List<FileInfo> list() {
-        return fileDao.list();
+        return fileDao.list(new FileInfo());
     }
 
     @Override

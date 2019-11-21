@@ -12,12 +12,12 @@
         values (#{id},#{fileName},#{url},#{size},#{typeId},#{suffix},#{uploaderId})
     </insert>
 
-    <select id="getById" resultType="fileInfo">
+    <select id="find" parameterType="fileInfo" resultType="fileInfo">
         select
         <include refid="fileInfoColumns"/>
         from file_info a left join file_type b
         on a.type_id=b.id
-        where a.del='0' and a.id=#{id}
+        where a.del=#{del} and a.id=#{id}
         order by a.upload_date desc
     </select>
 
@@ -26,7 +26,7 @@
         <include refid="fileInfoColumns"/>
         from file_info a left join file_type b
         on a.type_id=b.id
-        where a.del='0'
+        where a.del=#{del}
         order by a.upload_date desc
     </select>
 </mapper>

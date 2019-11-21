@@ -32,11 +32,16 @@ mybatis:
     map-underscore-to-camel-case: true
 
 #加密工具盐值
-jasypt:
-  encryptor:
-    password: /1uqR0vXxA2tSM9HCtSW4A== # ENC(tomcai)
+#jasypt:
+#  encryptor:
+#    password: /1uqR0vXxA2tSM9HCtSW4A== # ENC(tomcai)
 
 ##自定义参数
-# 自定义文件上传路径
-upload:
-  dir: e:/upload
+# 文件上传下载配置
+file:
+  # 自定义文件上传路径
+  upload:
+    dir: f:/upload/
+  #设置下载缓存的大小 单位字节
+  download:
+    bufferSize: 1048576 # 1024*1024

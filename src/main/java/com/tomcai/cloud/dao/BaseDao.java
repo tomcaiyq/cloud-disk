@@ -3,15 +3,18 @@ package com.tomcai.cloud.dao;
 import java.util.List;
 
 public interface BaseDao<T> {
-    T getById(String id);
+    // 根据条件查询单个
+    T find(T t);
 
+    // 根据条件查询多个
+    List<T> list(T t);
+
+    // 新增
     int insert(T t);
 
-    List<T> list();
+    // 删除
+    int delete(T t);
 
-    List<T> listByType(String type);
-
-    int delete(String id);
-
+    // 更新
     int update(T t);
 }

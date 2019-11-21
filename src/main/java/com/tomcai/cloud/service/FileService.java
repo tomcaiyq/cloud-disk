@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.List;
 
 public interface FileService {
-    String upload(MultipartHttpServletRequest request);
+    boolean upload(MultipartHttpServletRequest request);
 
     FileInfo getById(String id);
 

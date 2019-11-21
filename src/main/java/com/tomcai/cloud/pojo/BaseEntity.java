@@ -13,5 +13,5 @@ public class BaseEntity implements Serializable {
     protected Date createDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     protected Date updateDate;
-    protected boolean del;
+    protected short del = 0;
 }
