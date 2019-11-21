@@ -83,4 +83,19 @@ public class FileServiceImpl implements FileService {
     public List<FileInfo> getByTypeId(String typeId) {
         return null;
     }
+
+    @Override
+    @Transactional
+    public int delete(String id) {
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setId(id);
+        fileInfo.setDel((short) 1);
+        //删除硬盘上的文件
+       /* FileInfo f = fileDao.find(fileInfo);
+        File file = new File(f.getUrl());
+        if (file.exists()) {
+            file.delete();
+        }*/
+        return fileDao.delete(fileInfo);
+    }
 }

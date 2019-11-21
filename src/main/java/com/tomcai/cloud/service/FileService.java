@@ -13,4 +13,6 @@ public interface FileService {
     List<FileInfo> list();
 
     List<FileInfo> getByTypeId(String typeId);
+
+    int delete(String id);
 }

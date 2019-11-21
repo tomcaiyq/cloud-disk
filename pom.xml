@@ -31,16 +31,17 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring-boot-web-starter</artifactId>
-            <version>1.4.1</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.shiro</groupId>-->
+        <!--            <artifactId>shiro-spring-boot-web-starter</artifactId>-->
+        <!--            <version>1.4.1</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>1.4.1</version>
-        </dependency><!--        <dependency>-->
+        </dependency>
+        <!--        <dependency>-->
         <!--            <groupId>com.github.ulisesbocchio</groupId>-->
         <!--            <artifactId>jasypt-spring-boot-starter</artifactId>-->
         <!--            <version>2.1.2</version>-->

@@ -29,4 +29,8 @@
         where a.del=#{del}
         order by a.upload_date desc
     </select>
+
+    <delete id="delete" parameterType="fileInfo">
+        update file_info set del=#{del} where id=#{id}
+    </delete>
 </mapper>

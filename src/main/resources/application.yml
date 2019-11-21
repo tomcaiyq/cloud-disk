@@ -1,6 +1,6 @@
 # port
 server:
-  port: 8888
+  port: 80
 
 spring:
   # mysql
@@ -41,7 +41,7 @@ mybatis:
 file:
   # 自定义文件上传路径
   upload:
-    dir: f:/upload/
+    dir: /usr/local/upload/
   #设置下载缓存的大小 单位字节
   download:
-    bufferSize: 1048576 # 1024*1024
+    bufferSize: 2097152 # 1024*1024*2
