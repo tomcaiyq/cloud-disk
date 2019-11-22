@@ -35,7 +35,10 @@
                     <input type="checkbox">
                 </label>
             </th>
-            <td><a th:href="@{/{username}/{fileName}(username=${session.user.username},fileName=${fileInfo.fileName})}"
+            <td>
+                <img alt="" style="width: 32px;"
+                     th:src="@{/{username}/{fileName}(username=${session.user.username},fileName=${fileInfo.fileName})}">
+                <a th:href="@{/{username}/{fileName}(username=${session.user.username},fileName=${fileInfo.fileName})}"
                    target="_blank" th:text="${fileInfo.fileName}"></a></td>
             <td th:text="${fileInfo.size}"></td>
             <td th:text="${fileInfo.uploadDate}"></td>
