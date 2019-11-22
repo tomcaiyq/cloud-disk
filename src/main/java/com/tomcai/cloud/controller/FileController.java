@@ -1,8 +1,6 @@
 package com.tomcai.cloud.controller;
 
-import com.tomcai.cloud.pojo.FileInfo;
 import com.tomcai.cloud.service.FileService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +9,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("user")

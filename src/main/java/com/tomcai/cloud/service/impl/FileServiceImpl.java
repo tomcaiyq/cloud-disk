@@ -41,12 +41,13 @@ public class FileServiceImpl implements FileService {
     public boolean upload(MultipartHttpServletRequest request) {
         try {
             Iterator<String> fileNames = request.getFileNames();
+            final User user = (User) request.getSession().getAttribute("user");
             while (fileNames.hasNext()) {
                 String fileName = fileNames.next();
                 List<MultipartFile> files = request.getFiles(fileName);
                 if (files.size() > 0) {
                     files.forEach(f -> {
-                        File baseDir = new File(path);
+                        File baseDir = new File(path + user.getUsername());
                         File file = new File(baseDir, Objects.requireNonNull(f.getOriginalFilename()));
                         if (!baseDir.exists()) {
                             baseDir.mkdirs();
@@ -59,7 +60,6 @@ public class FileServiceImpl implements FileService {
                             fileInfo.setUrl(file.getAbsolutePath());
                             fileInfo.setTypeId(typeEnum.getId());
                             fileInfo.setSuffix(typeEnum.getSuffix());
-                            User user = (User) request.getSession().getAttribute("user");
                             fileInfo.setUploaderId(user.getId());
                             fileInfo.setFileName(f.getOriginalFilename());
                             fileDao.insert(fileInfo);

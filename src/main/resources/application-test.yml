@@ -1,6 +1,6 @@
 # port
 server:
-  port: 80
+  port: 8888
 
 spring:
   # mysql
@@ -24,7 +24,7 @@ spring:
   thymeleaf:
     cache: false
   resources:
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/usr/local/upload/
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:e:/upload/
 
 # mybatis
 mybatis:
@@ -45,7 +45,7 @@ mybatis:
 file:
   # 自定义文件上传路径
   upload:
-    dir: /usr/local/upload/
+    dir: e:/upload/
   #设置下载缓存的大小 单位字节
   download:
     bufferSize: 2097152 # 1024*1024*2 2M的缓存
