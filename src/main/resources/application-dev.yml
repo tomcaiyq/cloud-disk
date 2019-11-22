@@ -25,6 +25,8 @@ spring:
     #配置静态资源
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:e:/upload/
+  profiles:
+    active: dev
 
 # mybatis
 mybatis:

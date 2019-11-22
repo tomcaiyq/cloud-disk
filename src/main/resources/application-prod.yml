@@ -26,6 +26,8 @@ spring:
     # 静态资源配置 file:/usr/local/upload/
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/usr/local/upload/
+  profiles:
+    active: prod
 
 # mybatis
 mybatis:
