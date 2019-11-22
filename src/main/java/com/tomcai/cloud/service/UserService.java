@@ -4,4 +4,6 @@ import com.tomcai.cloud.pojo.User;
 
 public interface UserService {
     User getByUsername(String username);
+
+    String getPwdByUsername(String username);
 }

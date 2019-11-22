@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomcai.cloud.dao.UserDao">
     <sql id="userColumns">
-        id,username,password,nick_name,email,phone,avatar_url,
+        id,username,nick_name,email,phone,avatar_url,
         case
         when gender = '0' then '女'
         when gender = '1' then '男'
@@ -24,6 +24,14 @@
         <if test="email != '' and email != null">
             email=#{email}
         </if>
+    </select>
+
+    <select id="getPwdByUsername" resultType="String">
+        select password from t_user
+        where username=#{username}
+        <!--<if test="username != '' and username != null">
+            username=#{username}
+        </if>-->
     </select>
 
 </mapper>

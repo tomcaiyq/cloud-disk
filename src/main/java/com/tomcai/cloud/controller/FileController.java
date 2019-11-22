@@ -12,14 +12,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("user")
 public class FileController {
-
-    @Value("${file.download.bufferSize}")
-    private int bufferSize;
 
     @Resource
     private FileService fileService;
@@ -33,33 +30,12 @@ public class FileController {
 
     @GetMapping("download")
     public void download(String id, HttpServletResponse response) {
-        try {
-            FileInfo fileInfo = fileService.getById(id);
-            File file = new File(fileInfo.getUrl());
-            String filename = file.getName();
-            FileInputStream fis = new FileInputStream(fileInfo.getUrl());
-            response.reset();
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes(), StandardCharsets.UTF_8));
-            response.addHeader("Content-Length", "" + file.length());
-            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-            response.setContentType("application/octet-stream");
-            byte[] buffer = new byte[bufferSize];
-            int temp;
-            while ((temp = fis.read(buffer)) != -1) {
-                toClient.write(buffer, 0, temp);
-            }
-            toClient.write(buffer);
-            fis.close();
-            toClient.flush();
-            toClient.close();
-        } catch (IOException e) {
-            e.getMessage();
-        }
+        fileService.download(id, response);
     }
 
     @GetMapping("delete")
     public String delete(String id) {
-        int delete = fileService.delete(id);
+        fileService.delete(id);
         return "redirect:/home";
     }
 }

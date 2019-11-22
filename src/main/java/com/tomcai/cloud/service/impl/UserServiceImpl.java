@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService {
         user.setUsername(username);
         return userDao.find(user);
     }
+
+    @Override
+    public String getPwdByUsername(String username) {
+        return userDao.getPwdByUsername(username);
+    }
 }

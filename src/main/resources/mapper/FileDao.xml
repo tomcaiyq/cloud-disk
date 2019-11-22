@@ -17,8 +17,7 @@
         <include refid="fileInfoColumns"/>
         from file_info a left join file_type b
         on a.type_id=b.id
-        where a.del=#{del} and a.id=#{id}
-        order by a.upload_date desc
+        where a.del=#{del} and a.id=#{id} and a.uploader_id=#{uploaderId}
     </select>
 
     <select id="list" resultType="fileInfo">
@@ -26,7 +25,7 @@
         <include refid="fileInfoColumns"/>
         from file_info a left join file_type b
         on a.type_id=b.id
-        where a.del=#{del}
+        where a.del=#{del} and a.uploader_id=#{uploaderId}
         order by a.upload_date desc
     </select>
 

@@ -3,8 +3,11 @@ package com.tomcai.cloud.service.impl;
 import com.tomcai.cloud.dao.FileDao;
 import com.tomcai.cloud.enums.FileTypeEnum;
 import com.tomcai.cloud.pojo.FileInfo;
+import com.tomcai.cloud.pojo.User;
 import com.tomcai.cloud.service.FileService;
 import com.tomcai.cloud.utils.FileUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,14 +15,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class FileServiceImpl implements FileService {
 
     @Resource
@@ -27,6 +32,9 @@ public class FileServiceImpl implements FileService {
 
     @Value("${file.upload.dir}")
     private String path;
+
+    @Value("${file.download.bufferSize}")
+    private int bufferSize;
 
     @Override
     @Transactional
@@ -51,12 +59,14 @@ public class FileServiceImpl implements FileService {
                             fileInfo.setUrl(file.getAbsolutePath());
                             fileInfo.setTypeId(typeEnum.getId());
                             fileInfo.setSuffix(typeEnum.getSuffix());
-                            fileInfo.setUploaderId("c");
+                            User user = (User) request.getSession().getAttribute("user");
+                            fileInfo.setUploaderId(user.getId());
                             fileInfo.setFileName(f.getOriginalFilename());
                             fileDao.insert(fileInfo);
                             f.transferTo(file);
+                            log.info(request.getRemoteAddr() + "上传文件" + f.getOriginalFilename() + "成功!");
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            log.error(e.getMessage());
                         }
                     });
                 }
@@ -68,20 +78,43 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public FileInfo getById(String id) {
-        FileInfo fileInfo = new FileInfo();
-        fileInfo.setId(id);
+    public void download(String id, HttpServletResponse response) {
+        try {
+            FileInfo f = new FileInfo();
+            User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+            f.setUploaderId(user.getId());
+            f.setId(id);
+            FileInfo fileInfo = getById(f);
+            File file = new File(fileInfo.getUrl());
+            FileInputStream fis = new FileInputStream(fileInfo.getUrl());
+            response.reset();
+            String fileName = URLEncoder.encode(file.getName(), "UTF-8");
+            response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+            response.addHeader("Content-Length", "" + file.length());
+            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+            response.setContentType("application/octet-stream");
+            byte[] buffer = new byte[bufferSize];
+            int temp;
+            while ((temp = fis.read(buffer)) != -1) {
+                toClient.write(buffer, 0, temp);
+            }
+            toClient.write(buffer);
+            fis.close();
+            toClient.flush();
+            toClient.close();
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    @Override
+    public FileInfo getById(FileInfo fileInfo) {
         return fileDao.find(fileInfo);
     }
 
     @Override
-    public List<FileInfo> list() {
-        return fileDao.list(new FileInfo());
-    }
-
-    @Override
-    public List<FileInfo> getByTypeId(String typeId) {
-        return null;
+    public List<FileInfo> list(FileInfo fileInfo) {
+        return fileDao.list(fileInfo);
     }
 
     @Override

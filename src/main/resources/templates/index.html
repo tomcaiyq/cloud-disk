@@ -7,7 +7,7 @@
     <title>网盘</title>
 </head>
 <body>
-<div>欢迎您,<span th:text="${session.username}"></span>----<a href="/logout">退出</a></div>
+<div>欢迎您,<span th:text="${session.user.nickName}"></span>----<a href="/logout">退出</a></div>
 <form action="/user/upload" method="post" enctype="multipart/form-data">
     <input type="file" value="请选择上传文件" required multiple name="file">
     <input type="submit" value="上传">
@@ -35,11 +35,11 @@
                     <input type="checkbox">
                 </label>
             </th>
-            <td th:text="${fileInfo.fileName}" th:ondblclick="edit([[${fileInfo.fileName}]])"></td>
+            <td th:text="${fileInfo.fileName}"></td>
             <td th:text="${fileInfo.size}"></td>
             <td th:text="${fileInfo.uploadDate}"></td>
             <td>
-                <a th:href="@{/user/download(id=${fileInfo.id})}" >下载</a>|
+                <a th:href="@{/user/download(id=${fileInfo.id})}">下载</a>|
                 <a th:href="@{/user/delete(id=${fileInfo.id})}" onclick="return confirm('确定删除?')">删除</a>
             </td>
         </tr>
@@ -47,10 +47,5 @@
     </table>
 </div>
 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    function edit(fileName) {
-        console.log(fileName);
-    }
-</script>
 </body>
 </html>

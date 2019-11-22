@@ -4,5 +4,6 @@
       "name": "file.download.bufferSize",
       "type": "java.lang.String",
       "description": "Description for file.download.bufferSize."
-  }
-] }
+    }
+  ]
+}
