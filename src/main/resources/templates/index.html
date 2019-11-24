@@ -77,7 +77,7 @@
                 <a th:href="@{/{url}(url=${fileInfo.userUrl})}" target="_blank"
                    th:text="${fileInfo.userFileName}" th:title="${fileInfo.userFileName}"></a></td>
             <td th:text="${fileInfo.sizeShow}"></td>
-            <td th:text="${fileInfo.uploadDate}"></td>
+            <td th:text="${#dates.format(fileInfo.uploadDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
             <td>
                 <a th:href="@{/user/download(id=${fileInfo.id})}">下载</a>|
                 <a th:href="@{/user/delete(id=${fileInfo.id})}" onclick="return confirm('确定删除?')">删除</a>

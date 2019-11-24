@@ -1,6 +1,5 @@
 package com.tomcai.cloud.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,6 +23,5 @@ public class FileInfo extends BaseEntity {
     private String md5;
     private String parentId;
     private String suffix;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date uploadDate;
 }
