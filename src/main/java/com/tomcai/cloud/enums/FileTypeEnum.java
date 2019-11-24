@@ -5,8 +5,9 @@ public enum FileTypeEnum {
     VIDEO("视频", "video", "2", ""),
     DOCUMENT("文档", "document", "3", ""),
     AUDIO("音频", "audio", "4", ""),
-    TORRENT("种子", "torrent", "5", ""),
-    OTHER("其它", "other", "6", "");
+    APPLICATION("应用", "application", "5", ""),
+    TORRENT("种子", "torrent", "6", ""),
+    OTHER("其它", "other", "7", "");
 
     private String name;
     private String nameEn;

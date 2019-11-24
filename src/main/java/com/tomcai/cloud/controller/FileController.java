@@ -25,12 +25,12 @@ public class FileController {
     }
 
     @GetMapping("download")
-    public void download(String id, HttpServletResponse response) {
+    public void download(Long id, HttpServletResponse response) {
         fileService.download(id, response);
     }
 
     @GetMapping("delete")
-    public String delete(String id) {
+    public String delete(Long id) {
         fileService.delete(id);
         return "redirect:/home";
     }

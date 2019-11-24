@@ -8,7 +8,7 @@
         when gender = '0' then '女'
         when gender = '1' then '男'
         when gender = '2' then '保密'
-        end,birthday,create_date,status
+        end gender,birthday,create_date,status
     </sql>
     <select id="find" parameterType="user" resultType="user">
         select

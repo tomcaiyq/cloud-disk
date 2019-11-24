@@ -48,7 +48,7 @@ public class UserController {
     public String home(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         FileInfo fileInfo = new FileInfo();
-        fileInfo.setUploaderId(user.getId());
+        fileInfo.setUsername(user.getUsername());
         model.addAttribute("files", fileService.list(fileInfo));
         return "index";
     }

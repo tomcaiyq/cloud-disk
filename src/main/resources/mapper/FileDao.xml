@@ -3,33 +3,49 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomcai.cloud.dao.FileDao">
     <sql id="fileInfoColumns">
-        a.id, a.file_name, a.url, a.size, b.name as type, a.type_id,
-        a.uploader_id, a.suffix, a.upload_date as uploadDate, a.update_date
+        a.file_name userFileName, a.username, a.size_show, a.update_date, a.upload_date,b.id,
+        a.parent_id, b.size, b.file_name, b.suffix, c.name type, b.md5, a.user_url,b.url
     </sql>
 
     <insert id="insert" parameterType="fileInfo">
-        insert into file_info(id,file_name,url,size,type_id,suffix,uploader_id)
-        values (#{id},#{fileName},#{url},#{size},#{typeId},#{suffix},#{uploaderId})
+        insert into file_info(file_name,url,size,type_id,suffix,md5)
+        values (#{fileName},#{url},#{size},#{typeId},#{suffix},#{md5})
+    </insert>
+
+    <insert id="insertUserFile" parameterType="fileInfo">
+        insert into user_file(username,file_id,file_name,size_show,user_url)
+        values (#{username},#{id},#{userFileName},#{sizeShow},#{userUrl})
     </insert>
 
     <select id="find" parameterType="fileInfo" resultType="fileInfo">
         select
         <include refid="fileInfoColumns"/>
-        from file_info a left join file_type b
-        on a.type_id=b.id
-        where a.del=#{del} and a.id=#{id} and a.uploader_id=#{uploaderId}
+        from user_file a left join file_info b
+        on a.file_id=b.id left join file_type c on b.type_id=c.id
+        where a.del=#{del} and b.id=#{id}
+    </select>
+
+    <select id="getByMD5" resultType="fileInfo">
+        select
+        a.md5,a.id
+        from file_info a
+        where md5=#{md5}
     </select>
 
     <select id="list" resultType="fileInfo">
         select
         <include refid="fileInfoColumns"/>
-        from file_info a left join file_type b
-        on a.type_id=b.id
-        where a.del=#{del} and a.uploader_id=#{uploaderId}
+        from user_file a left join file_info b
+        on a.file_id=b.id left join file_type c on b.type_id=c.id
+        where a.del=#{del} and a.username=#{username}
         order by a.upload_date desc
     </select>
 
+    <select id="isExistFileName" resultType="int" parameterType="string">
+        select count(1) from user_file where file_name=#{fileName}
+    </select>
+
     <delete id="delete" parameterType="fileInfo">
-        update file_info set del=#{del} where id=#{id}
+        update user_file set del=#{del} where file_id=#{id}
     </delete>
 </mapper>

@@ -13,7 +13,13 @@ public interface FileService {
 
     List<FileInfo> list(FileInfo fileInfo);
 
-    int delete(String id);
+    int delete(Long id);
 
-    void download(String id, HttpServletResponse response);
+    void download(Long id, HttpServletResponse response);
+
+    int insertFile(FileInfo fileInfo);
+
+    int insertUserFile(FileInfo fileInfo);
+
+    int validateFileName(String fileName);
 }
