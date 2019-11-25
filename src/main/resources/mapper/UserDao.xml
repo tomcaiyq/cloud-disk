@@ -10,6 +10,7 @@
         when gender = '2' then '保密'
         end gender,birthday,create_date,status
     </sql>
+
     <select id="find" parameterType="user" resultType="user">
         select
         <include refid="userColumns"/>
@@ -31,7 +32,12 @@
         where username=#{username}
         <!--<if test="username != '' and username != null">
             username=#{username}
+        </if>
+        <if test="phone != '' and phone != null">
+            phone=#{phone}
+        </if>
+        <if test="email != '' and email != null">
+            email=#{email}
         </if>-->
     </select>
-
 </mapper>

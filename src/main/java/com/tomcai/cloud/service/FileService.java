@@ -22,4 +22,8 @@ public interface FileService {
     int insertUserFile(FileInfo fileInfo);
 
     int validateFileName(String fileName);
+
+    List<FileInfo> recycleList(String username);
+
+    int restore(FileInfo fileInfo);
 }

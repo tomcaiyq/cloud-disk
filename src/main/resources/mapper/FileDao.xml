@@ -38,7 +38,7 @@
         from user_file a left join file_info b
         on a.file_id=b.id left join file_type c on b.type_id=c.id
         where a.del=#{del} and a.username=#{username}
-        order by a.upload_date desc
+        order by a.update_date desc
     </select>
 
     <select id="isExistFileName" resultType="int" parameterType="string">
@@ -48,4 +48,9 @@
     <delete id="delete" parameterType="fileInfo">
         update user_file set del=#{del} where file_id=#{id}
     </delete>
+
+    <update id="update" parameterType="fileInfo">
+        update user_file set del=#{del} where file_id=#{id}
+    </update>
+
 </mapper>

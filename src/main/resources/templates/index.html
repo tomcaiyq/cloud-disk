@@ -72,7 +72,7 @@
                 </label>
             </th>
             <td>
-                <img alt="" style="width: 64px;"
+                <img alt="" th:if="${fileInfo.typeId == 1}" style="width: 64px;"
                      th:src="@{/{url}(url=${fileInfo.userUrl})}">
                 <a th:href="@{/{url}(url=${fileInfo.userUrl})}" target="_blank"
                    th:text="${fileInfo.userFileName}" th:title="${fileInfo.userFileName}"></a></td>

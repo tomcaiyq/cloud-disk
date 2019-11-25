@@ -164,4 +164,18 @@ public class FileServiceImpl implements FileService {
     public int validateFileName(String fileName) {
         return fileDao.isExistFileName(fileName);
     }
+
+    @Override
+    public List<FileInfo> recycleList(String username) {
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setUsername(username);
+        fileInfo.setDel((short) 1);
+        return fileDao.list(fileInfo);
+    }
+
+    @Override
+    @Transactional
+    public int restore(FileInfo fileInfo) {
+        return fileDao.update(fileInfo);
+    }
 }

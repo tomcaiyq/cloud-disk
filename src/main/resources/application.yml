@@ -9,7 +9,8 @@ spring:
     url: jdbc:mysql://localhost:3306/test?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8
     # ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
     username: root
-    password: 123456 # ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
+    password: 111111 # ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
+
   # redis
   redis:
     host: 121.36.32.117 #ENC(okxOoOtJksvAvsggGgCx+fFpsCGqdGbT)
