@@ -73,7 +73,7 @@
             </th>
             <td>
                 <img alt="" th:if="${fileInfo.typeId == 1}" style="width: 64px;"
-                     th:src="@{/{url}(url=${fileInfo.userUrl})}">
+                     th:src="@{/{url}(url=${fileInfo.userUrl})}" src="">
                 <a th:href="@{/{url}(url=${fileInfo.userUrl})}" target="_blank"
                    th:text="${fileInfo.userFileName}" th:title="${fileInfo.userFileName}"></a></td>
             <td th:text="${fileInfo.sizeShow}"></td>
@@ -88,9 +88,5 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    $('#file').on('change', function () {
-    });
-</script>
 </body>
 </html>
