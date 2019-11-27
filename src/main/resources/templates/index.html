@@ -44,9 +44,9 @@
     </nav>
 </div>
 <div>欢迎您,<span th:text="${session.user.nickName}"></span>----<a href="/logout">退出</a></div>
-<form action="/user/upload" method="post" enctype="multipart/form-data">
-    <input type="file" value="请选择上传文件" id="file" required multiple name="file">
-    <input type="submit" value="上传">
+<form action="/user/upload" id="fileForm" method="post" enctype="multipart/form-data">
+    <input type="file" id="file" required multiple name="file" style="display: none;">
+    <button class="btn btn-primary btn-sm" onclick="$('#file').click();">上传文件</button>
 </form>
 
 <div>
@@ -88,5 +88,10 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $('#fileForm').on('change', function () {
+        $(this).submit();
+    })
+</script>
 </body>
 </html>
