@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -22,6 +23,9 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login() {
+        if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
+            return "redirect:home";
+        }
         return "login";
     }
 
