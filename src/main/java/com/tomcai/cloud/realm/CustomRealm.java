@@ -1,11 +1,13 @@
 package com.tomcai.cloud.realm;
 
+import com.tomcai.cloud.pojo.User;
 import com.tomcai.cloud.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
@@ -32,15 +34,13 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String username = (String) authenticationToken.getPrincipal();
-        String password = new String((char[]) authenticationToken.getCredentials());
-        String dbPwd = userService.getPwdByUsername(username);
-//        根据用户名从数据库获取密码
-        if (dbPwd == null || "".equals(dbPwd)) {
-            throw new AccountException("用户名不正确");
-        } else if (!password.equals(dbPwd)) {
-            throw new AccountException("密码不正确");
-        } else
-            return new SimpleAuthenticationInfo(username, password, getName());
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        String username = token.getUsername();
+        User user = userService.getByUsername(username);
+        ByteSource salt = ByteSource.Util.bytes(username);
+        if (user == null) {
+            throw new UnknownAccountException("账户不存在");
+        }
+        return new SimpleAuthenticationInfo(user, user.getPassword(), salt, getName());
     }
 }

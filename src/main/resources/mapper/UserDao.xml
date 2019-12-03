@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomcai.cloud.dao.UserDao">
     <sql id="userColumns">
-        id,username,nick_name,email,phone,avatar_url,
+        id,username,nick_name,email,phone,avatar_url,password,
         case
         when gender = '0' then '女'
         when gender = '1' then '男'
@@ -40,4 +40,9 @@
             email=#{email}
         </if>-->
     </select>
+
+    <insert id="insert" parameterType="user">
+        insert into t_user(username, password)
+        values (#{username},#{password})
+    </insert>
 </mapper>

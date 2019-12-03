@@ -2,6 +2,7 @@ package com.tomcai.cloud.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 public class User implements Serializable {
     private String id;
     private String username;
+    private String password;
     private String nickName;
     private String email;
     private String phone;

@@ -4,6 +4,7 @@ import com.tomcai.cloud.pojo.FileInfo;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public interface FileService {

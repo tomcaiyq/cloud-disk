@@ -6,4 +6,6 @@ public interface UserService {
     User getByUsername(String username);
 
     String getPwdByUsername(String username);
+
+    boolean add(User user);
 }
