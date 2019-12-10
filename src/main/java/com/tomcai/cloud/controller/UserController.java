@@ -27,7 +27,16 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
+        String header = request.getHeader("user-agent");
+        log.info(header);
+        if (header.contains("Android")) {
+            log.info("安卓移动端" + request.getRemoteAddr() + "访问页面");
+        } else if (header.contains("iPhone")) {
+            log.info("苹果移动端" + request.getRemoteAddr() + "访问页面");
+        } else {
+            log.info("电脑端" + request.getRemoteAddr() + "访问页面");
+        }
         if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
             return "redirect:home";
         }
