@@ -27,16 +27,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request) {
-        String header = request.getHeader("user-agent");
-        log.info(header);
-        if (header.contains("Android")) {
-            log.info("安卓移动端" + request.getRemoteAddr() + "访问页面");
-        } else if (header.contains("iPhone")) {
-            log.info("苹果移动端" + request.getRemoteAddr() + "访问页面");
-        } else {
-            log.info("电脑端" + request.getRemoteAddr() + "访问页面");
-        }
+    public String login() {
         if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
             return "redirect:home";
         }
@@ -57,7 +48,8 @@ public class UserController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, remember);
         try {
             subject.login(token);
-            request.getSession().setAttribute("user", subject.getPrincipal());
+            User user = (User) subject.getPrincipal();
+            request.getSession().setAttribute("user", user);
         } catch (Exception e) {
             log.error(e.getMessage());
             redirectAttributes.addFlashAttribute("username", username);
