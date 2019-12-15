@@ -2,7 +2,6 @@ package com.tomcai.cloud.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.util.Date;

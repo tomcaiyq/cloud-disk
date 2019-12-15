@@ -31,7 +31,7 @@ public class UserController {
         if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
             return "redirect:/home";
         }
-        return "login";
+        return "/login";
     }
 
     @RequestMapping("/logout")
