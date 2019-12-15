@@ -44,6 +44,13 @@ mybatis:
   configuration:
     # 驼峰命名
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: warn
+  file:
+    name: /root/logs/cloud-disk.log
+
 #加密工具盐值
 #jasypt:
 #  encryptor:
@@ -58,3 +65,4 @@ file:
   #设置下载缓存的大小 单位字节
   download:
     bufferSize: 2097152 # 1024*1024*2 2M的缓存
+
