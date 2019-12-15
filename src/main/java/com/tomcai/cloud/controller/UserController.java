@@ -26,12 +26,12 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/login")
+    @RequestMapping({"/login", ""})
     public String login() {
         if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
             return "redirect:/home";
         }
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/logout")
@@ -64,7 +64,7 @@ public class UserController {
     @Resource
     private FileService fileService;
 
-    @RequestMapping({"/home", ""})
+    @RequestMapping({"/home"})
     public String home(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         FileInfo fileInfo = new FileInfo();
