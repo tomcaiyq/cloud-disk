@@ -29,7 +29,7 @@ public class UserController {
     @RequestMapping("/login")
     public String login() {
         if (!Objects.isNull(SecurityUtils.getSubject().getSession().getAttribute("user"))) {
-            return "redirect:home";
+            return "redirect:/home";
         }
         return "login";
     }
@@ -44,6 +44,7 @@ public class UserController {
     @PostMapping("/validate")
     public String validate(String username, String password, boolean remember,
                            RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, remember);
         try {
@@ -54,16 +55,16 @@ public class UserController {
             log.error(e.getMessage());
             redirectAttributes.addFlashAttribute("username", username);
             redirectAttributes.addFlashAttribute("error", "用户名或密码错误");
-            return "redirect:login";
+            return "redirect:/login";
         }
 
-        return "redirect:home";
+        return "redirect:/home";
     }
 
     @Resource
     private FileService fileService;
 
-    @RequestMapping("home")
+    @RequestMapping({"/home", ""})
     public String home(Model model, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         FileInfo fileInfo = new FileInfo();
