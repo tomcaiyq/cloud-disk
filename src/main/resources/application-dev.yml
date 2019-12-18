@@ -22,7 +22,7 @@ spring:
     # 上传文件的配置
   servlet:
     multipart:
-      max-file-size: 100m
+      max-file-size: 100MB
       max-request-size: 1GB
   # 取消thymeleaf的缓存 开发阶段
   thymeleaf:
