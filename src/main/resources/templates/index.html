@@ -4,133 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="referrer" content="no-referrer"/>
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <title>网盘</title>
     <style>
-        .user-info-model {
-            width: 300px;
-            display: none;
-            right: 90px;
-        }
-
         .right-top a {
             margin-right: 5px;
         }
 
-        .icon {
-            width: 32px;
+        .file-container {
+            font-size: 13px;
         }
 
-        ul li {
-            list-style: none;
+        .icon-container {
+            height: 50px;
+            line-height: 45px;
+        }
+
+        .icon {
+            width: 30px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <form action="/user/upload" id="fileForm" method="post" enctype="multipart/form-data">
+        <input type="file" id="file" required multiple name="file" style="display: none;">
+        <button class="btn btn-primary" onclick="$('#file').click();">上传文件</button>
+    </form>
+    <img class="mr-2 rounded-circle" style="width: 40px;" th:src="${session.user.avatarUrl}"
+         src="" alt="" onmouseleave="$('#user-info').hide()"
+         onmouseenter="$('#user-info').show()">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
-            <div class="my-2 my-lg-0">
-                <div class="right-top">
-                    <img class="mr-2" style="height: 32px; width: 32px; border-radius: 16px;"
-                         th:src="${session.user.avatarUrl}"
-                         src="" alt="" onmouseleave="$('#user-info').hide()"
-                         onmouseenter="$('#user-info').show()">
+    <a href="javascript:void(0);">消息</a>
+    <a href="javascript:void(0);">动态</a>
+    <a href="javascript:void(0);">收藏</a>
+    <a href="javascript:void(0);">历史</a>
+    <a href="/logout">退出</a>
 
-                    <div class="user-info-model position-absolute" id="user-info">
-                        <div class="card card-widget widget-user">
-                            <div class="widget-user-header bg-info">
-                                <h3 class="widget-user-username">[[${session.user.nickName}]]</h3>
-                            </div>
-                            <div class="widget-user-image">
-                                <img class="img-circle elevation-1" th:src="${session.user.avatarUrl}"
-                                     alt=""
-                                     src="">
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-sm-4 border-right">
-                                        <div class="description-block">
-                                            <h5 class="description-header">3,200</h5>
-                                            <span class="description-text">SALES</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 border-right">
-                                        <div class="description-block">
-                                            <h5 class="description-header">13,000</h5>
-                                            <span class="description-text">FOLLOWERS</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="description-block">
-                                            <h5 class="description-header">35</h5>
-                                            <span class="description-text">PRODUCTS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+</div>
 
-                    <a href="javascript:void(0);">消息</a>
-                    <a href="javascript:void(0);">动态</a>
-                    <a href="javascript:void(0);">收藏</a>
-                    <a href="javascript:void(0);">历史</a>
-                    <a href="/logout">退出</a>
-
-                </div>
+<div class="container-fluid">
+    <div class="row file-container" th:each="file:${files}">
+        <div class="icon-container col-auto">
+            <img class="icon" th:src="@{/img/icon/icon-xml.png}" alt="" src="">
+        </div>
+        <div class="col-auto" style="line-height: 23px; margin-left: -15px;">
+            <div>[[${file.userFileName}]]</div>
+            <div>
+                <span th:text="${#dates.format(file.uploadDate, 'yyyy-MM-dd HH:mm')}"></span>
+                <span th:text="${file.sizeShow}"></span>
             </div>
         </div>
-    </nav>
-
+        <hr>
+    </div>
 </div>
-<form action="/user/upload" id="fileForm" method="post" enctype="multipart/form-data">
-    <input type="file" id="file" required multiple name="file" style="display: none;">
-    <button class="btn btn-primary btn-sm" onclick="$('#file').click();">上传文件</button>
-</form>
-
-<div>
-    <ul>
-        <li>
-            <div><img class="icon" th:src="@{/img/icon/xml.png}" alt="" src=""></div>
-        </li>
-    </ul>
-</div>
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script th:src="@{/js/adminlte.min.js}"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+<script src="/js/bootstrap.min.js" rel="script"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.15.0/popper.min.js"></script>
 <script>
-    $('#fileForm').on('change', function () {
+    $('#fileForm').on('change', () => {
         $(this).submit();
     });
-
 </script>
 </body>
 </html>

@@ -43,7 +43,8 @@ public class UserController {
 
     @PostMapping("/validate")
     public String validate(String username, String password, boolean remember,
-                           RedirectAttributes redirectAttributes, HttpServletRequest request) {
+                           RedirectAttributes redirectAttributes,
+                           HttpServletRequest request) {
 
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, remember);

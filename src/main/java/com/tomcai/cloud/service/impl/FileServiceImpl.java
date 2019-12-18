@@ -62,7 +62,7 @@ public class FileServiceImpl implements FileService {
                         File baseDir = new File(path + dirName);
 
                         if (!baseDir.exists()) {
-                            if (baseDir.mkdirs())
+                            if (!baseDir.mkdirs())
                                 throw new RuntimeException("文件夹创建失败");
                         }
                         FileTypeEnum typeEnum = FileUtils.fileType(Objects.requireNonNull(file.getOriginalFilename()));
