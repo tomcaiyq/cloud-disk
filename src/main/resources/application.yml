@@ -1,5 +1,3 @@
-#默认情况下激活的配置文件
 spring:
   profiles:
     active: dev
-

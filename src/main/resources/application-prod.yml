@@ -12,7 +12,7 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://180.76.139.140:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://db-tomcai.mysql.rds.aliyuncs.com:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8
     # ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
     username: root
     password: Cai@1995 # ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
@@ -32,9 +32,6 @@ spring:
     # 静态资源配置 file:/usr/local/upload/
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/usr/local/upload/
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: Asia/Shanghai
 
 # mybatis
 mybatis:
@@ -45,7 +42,6 @@ mybatis:
   configuration:
     # 驼峰命名
     map-underscore-to-camel-case: true
-
 #加密工具盐值
 #jasypt:
 #  encryptor:
@@ -60,4 +56,3 @@ file:
   #设置下载缓存的大小 单位字节
   download:
     bufferSize: 2097152 # 1024*1024*2 2M的缓存
-
