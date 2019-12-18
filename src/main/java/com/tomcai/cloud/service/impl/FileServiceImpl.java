@@ -19,7 +19,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -63,7 +62,8 @@ public class FileServiceImpl implements FileService {
                         File baseDir = new File(path + dirName);
 
                         if (!baseDir.exists()) {
-                            baseDir.mkdirs();
+                            if (baseDir.mkdirs())
+                                throw new RuntimeException("文件夹创建失败");
                         }
                         FileTypeEnum typeEnum = FileUtils.fileType(Objects.requireNonNull(file.getOriginalFilename()));
 

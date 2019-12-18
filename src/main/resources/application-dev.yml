@@ -11,7 +11,7 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8&useUnicode=true
     username: root
     password: 111111
   # redis
@@ -40,6 +40,7 @@ mybatis:
   configuration:
     # 驼峰命名
     map-underscore-to-camel-case: true
+
 #加密工具盐值
 #jasypt:
 #  encryptor:

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class FileController {
 
     @Resource
@@ -25,7 +25,12 @@ public class FileController {
     public String upload(MultipartHttpServletRequest request) {
         boolean success = fileService.upload(request);
         if (success) return "redirect:/home";
-        else return "redirect:/error.html";
+        else return "/error";
+    }
+
+    @RequestMapping("/error")
+    public String error() {
+        return "error";
     }
 
     @GetMapping("download")
@@ -47,11 +52,11 @@ public class FileController {
 
     @GetMapping("restore")
     @ResponseBody
-    public ResultBean restore(Long id) {
+    public ResultBean<Object> restore(Long id) {
         FileInfo fileInfo = new FileInfo();
         fileInfo.setId(id);
         if (fileService.restore(fileInfo) > 0)
-            return new ResultBean();
-        else return new ResultBean("fail");
+            return new ResultBean<>();
+        else return new ResultBean<>("fail");
     }
 }
