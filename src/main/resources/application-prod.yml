@@ -1,6 +1,6 @@
 # port
 server:
-  port: 80
+  port: 8080
   servlet:
     session:
       tracking-modes: cookie
@@ -23,16 +23,14 @@ spring:
     # 上传文件的配置
   servlet:
     multipart:
-      max-file-size: 1GB
+      max-file-size: 100m
       max-request-size: 1GB
   # 取消thymeleaf的缓存 开发阶段
   thymeleaf:
-    cache: false
+    cache: true
     # 静态资源配置 file:/usr/local/upload/
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:/usr/local/upload/
-  profiles:
-    active: prod
 
 # mybatis
 mybatis:
