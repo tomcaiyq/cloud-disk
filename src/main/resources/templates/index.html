@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
     <title>网盘</title>
+    <style>
+        .user-info-model {
+            width: 300px;
+            display: none;
+            right: 90px;
+        }
+
+        .right-top a {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -36,16 +48,59 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <div class="">
+            <div class="my-2 my-lg-0">
+                <div class="right-top">
                     <img class="mr-2" style="height: 32px; width: 32px; border-radius: 16px;"
                          th:src="${session.user.avatarUrl}"
-                         src="" th:title="${session.user.nickName}" alt="">
+                         src="" alt="" onmouseleave="$('#user-info').hide()"
+                         onmouseenter="$('#user-info').show()">
+
+                    <div class="user-info-model position-absolute" id="user-info">
+                        <div class="card card-widget widget-user">
+                            <div class="widget-user-header bg-info">
+                                <h3 class="widget-user-username">[[${session.user.nickName}]]</h3>
+                            </div>
+                            <div class="widget-user-image">
+                                <img class="img-circle elevation-1" th:src="${session.user.avatarUrl}"
+                                     alt=""
+                                     src="">
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-sm-4 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">SALES</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">13,000</h5>
+                                            <span class="description-text">FOLLOWERS</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="description-block">
+                                            <h5 class="description-header">35</h5>
+                                            <span class="description-text">PRODUCTS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="javascript:void(0);">消息</a>
+                    <a href="javascript:void(0);">动态</a>
+                    <a href="javascript:void(0);">收藏</a>
+                    <a href="javascript:void(0);">历史</a>
                     <a href="/logout">退出</a>
+
                 </div>
-            </form>
+            </div>
         </div>
     </nav>
+
 </div>
 <form action="/user/upload" id="fileForm" method="post" enctype="multipart/form-data">
     <input type="file" id="file" required multiple name="file" style="display: none;">
@@ -91,10 +146,12 @@
 </div>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
 <script>
     $('#fileForm').on('change', function () {
         $(this).submit();
-    })
+    });
+
 </script>
 </body>
 </html>

@@ -11,7 +11,7 @@ spring:
   # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://180.76.139.140:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8
+    url: jdbc:mysql://db-tomcai.mysql.rds.aliyuncs.com:3306/cloud-disk?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf-8
     # ENC(Fa8ZkoaXeRu7wKJD/WBEvB5y92ze99nWGUKAUy2RXgP0AAFAQQTM9r0LjTit+wOeAwY1XI01V+9WytXyDM30hkwmGBoeA/WpUuVOiKTf033H62g/tMYNH8qT8VY4sUfOUO3d8EpwU40=)
     username: root
     password: Cai@1995 # ENC(ZUR23UX/fzqJqlZpal/bqgKOsqX/OqMJ)  # Cai@1995
