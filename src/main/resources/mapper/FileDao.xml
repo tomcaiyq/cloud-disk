@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomcai.cloud.dao.FileDao">
     <sql id="fileInfoColumns">
-        a.file_name userFileName, a.username, a.size_show, a.update_date, a.upload_date,b.id,
+        a.file_name userFileName, a.username, a.size_show, a.update_date, a.upload_date,b.id,a.icon,
         a.parent_id, b.size, b.file_name, b.suffix, c.name type, b.md5, a.user_url,b.url
     </sql>
 

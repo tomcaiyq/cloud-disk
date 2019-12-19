@@ -79,6 +79,7 @@ public class FileServiceImpl implements FileService {
                         fileInfo.setTypeId(typeEnum.getId());
                         fileInfo.setSuffix(typeEnum.getSuffix());
                         fileInfo.setFileName(fName);
+                        fileInfo.setIcon("icon-unknown");
                         fileInfo.setMd5(md5);
                         if (validateFileName(file.getOriginalFilename()) > 0)
                             fileInfo.setUserFileName(FileUtils.fileName(file.getOriginalFilename(), typeEnum.getSuffix()));

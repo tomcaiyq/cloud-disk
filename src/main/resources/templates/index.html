@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="referrer" content="no-referrer"/>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!--    <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet">-->
+    <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <title>网盘</title>
     <style>
         .right-top a {
@@ -12,7 +14,7 @@
         }
 
         .file-container {
-            font-size: 13px;
+            margin-bottom: .5rem;
         }
 
         .icon-container {
@@ -21,8 +23,16 @@
         }
 
         .icon {
-            width: 30px;
+            width: 24px;
+            margin-left: -8px;
+        }
+
+        img, i {
             vertical-align: middle;
+        }
+
+        *, body {
+            font-family: '微软雅黑', serif;
         }
     </style>
 </head>
@@ -45,25 +55,34 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row file-container" th:each="file:${files}">
-        <div class="icon-container col-auto">
-            <img class="icon" th:src="@{/img/icon/icon-xml.png}" alt="" src="">
+    <div class="row file-container" id="item" th:each="file:${files}">
+        <div class="col-1 col-lg-auto">
+            <label for="item" style="text-align: center; line-height: 50px; margin-bottom: -0.5rem;">
+                <input type="checkbox">
+            </label>
         </div>
-        <div class="col-auto" style="line-height: 23px; margin-left: -15px;">
-            <div>[[${file.userFileName}]]</div>
-            <div>
-                <span th:text="${#dates.format(file.uploadDate, 'yyyy-MM-dd HH:mm')}"></span>
+        <div class="icon-container col-1 col-lg-auto">
+            <img th:src="@{/img/icon/{name}(name = ${#objects.nullSafe(file.icon, 'icon-unknown') + '.png'})}"
+                 class="icon" alt="" src="">
+        </div>
+        <div class="col-10 col-lg-auto">
+            <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height: 25px; height: 25px;">
+                [[${file.userFileName}]]
+            </div>
+            <div style="height: 25px; line-height: 25px;">
+                <span th:text="${#dates.format(file.uploadDate, 'yyyy-MM-dd HH:mm')}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                 <span th:text="${file.sizeShow}"></span>
             </div>
         </div>
         <hr>
     </div>
 </div>
+
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
 <script src="/js/bootstrap.min.js" rel="script"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.15.0/popper.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/popper.js/1.15.0/popper.min.js"></script>-->
 <script>
-    $('#fileForm').on('change', () => {
+    $('#fileForm').on('change', function () {
         $(this).submit();
     });
 </script>
